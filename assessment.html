@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨境商品评估 - 关务管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assessment.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧菜单栏 -->
+        <aside class="sidebar">
+            <div class="logo">新功能原型图</div>
+            <nav class="menu">
+                <div class="menu-item">
+                    <div class="menu-title" onclick="toggleSubmenu(this)">
+                        <span>关务管理</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <ul class="submenu active">
+                        <li><a href="index.html">关务税则库管理</a></li>
+                        <li><a href="index.html">进出口管制认证库</a></li>
+                        <li><a href="assessment.html" class="active">跨境商品评估</a></li>
+                        <li><a href="index.html">许可证管理</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>跨境商品评估</h1>
+            </div>
+
+            <!-- 顶部视图TAB - 全部平铺展示 -->
+            <div class="view-tabs">
+                <div class="tab-group">
+                    <!-- 全部 -->
+                    <div class="tab-item active" data-tab="all">
+                        <span>全部</span>
+                        <span class="badge">156</span>
+                    </div>
+                    
+                    <div class="tab-divider"></div>
+                    
+                    <!-- 澄清中 -->
+                    <div class="tab-category">
+                        <span class="tab-category-label">澄清中</span>
+                        <div class="tab-category-items">
+                            <div class="tab-item" data-tab="pending-reply">
+                                <span>待采销回复</span>
+                                <span class="badge">12</span>
+                            </div>
+                            <div class="tab-item" data-tab="replied">
+                                <span>已回复</span>
+                                <span class="badge">8</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-divider"></div>
+                    
+                    <!-- 关务评估 -->
+                    <div class="tab-category">
+                        <span class="tab-category-label">关务评估</span>
+                        <div class="tab-category-items">
+                            <div class="tab-item" data-tab="customs-unassigned">
+                                <span>待分配</span>
+                                <span class="badge">25</span>
+                            </div>
+                            <div class="tab-item" data-tab="customs-vendor">
+                                <span>服务商评估</span>
+                                <span class="badge">18</span>
+                            </div>
+                            <div class="tab-item" data-tab="customs-confirm">
+                                <span>待确认</span>
+                                <span class="badge">15</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-divider" id="certTabDivider"></div>
+                    
+                    <!-- 认证评估（中国/越南时隐藏） -->
+                    <div class="tab-category" id="certTabCategory">
+                        <span class="tab-category-label">认证评估</span>
+                        <div class="tab-category-items">
+                            <div class="tab-item" data-tab="cert-pending">
+                                <span>待评估</span>
+                                <span class="badge">30</span>
+                            </div>
+                            <div class="tab-item" data-tab="cert-confirm">
+                                <span>待确认</span>
+                                <span class="badge">20</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查询条件 -->
+            <div class="search-panel">
+                <div class="search-row">
+                    <div class="form-item">
+                        <label>国际SKU</label>
+                        <input type="text" id="searchIntlSku" placeholder="多个用逗号分隔" class="input-field">
+                    </div>
+                    <div class="form-item">
+                        <label>国内SKU</label>
+                        <input type="text" id="searchDomSku" placeholder="多个用逗号分隔" class="input-field">
+                    </div>
+                    <div class="form-item">
+                        <label>海关编码</label>
+                        <input type="text" id="searchHsCode" placeholder="请输入海关编码" class="input-field">
+                    </div>
+                    <div class="form-item">
+                        <label>数据来源</label>
+                        <select id="searchSource" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="Excel">Excel</option>
+                            <option value="商品">商品</option>
+                            <option value="灵犀">灵犀</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-row">
+                    <div class="form-item">
+                        <label>创建时间</label>
+                        <div class="date-range">
+                            <input type="date" id="createTimeStart" class="input-field">
+                            <span>至</span>
+                            <input type="date" id="createTimeEnd" class="input-field">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label>任务号</label>
+                        <input type="text" id="searchTaskNo" placeholder="多个用逗号分隔" class="input-field">
+                    </div>
+                    <div class="form-item">
+                        <label>评估截止时间</label>
+                        <div class="date-range">
+                            <input type="date" id="deadlineStart" class="input-field">
+                            <span>至</span>
+                            <input type="date" id="deadlineEnd" class="input-field">
+                        </div>
+                    </div>
+                    <div class="form-item" id="customsStatusField">
+                        <label>关务评估状态</label>
+                        <select id="searchCustomsStatus" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="1">待评估</option>
+                            <option value="2">待确认</option>
+                            <option value="3">已评估</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-row">
+                    <div class="form-item" id="certStatusField">
+                        <label>强制性认证状态</label>
+                        <select id="searchCertStatus" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="1">待评估</option>
+                            <option value="2">待确认</option>
+                            <option value="3">已评估</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>澄清进度</label>
+                        <div class="dropdown-multiselect" id="clarifyDropdown">
+                            <div class="dropdown-trigger" onclick="toggleClarifyDropdown()">
+                                <span id="clarifyDisplayText">请选择</span>
+                                <span class="dropdown-arrow-icon">▼</span>
+                            </div>
+                            <div class="dropdown-menu" id="clarifyMenu">
+                                <label class="dropdown-option">
+                                    <input type="checkbox" value="0" onchange="updateClarifySelection()"> 无澄清
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" value="10" onchange="updateClarifySelection()"> 待采销回复
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" value="20" onchange="updateClarifySelection()"> 澄清已回复
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" value="30" onchange="updateClarifySelection()"> 澄清完毕
+                                </label>
+                                <div class="dropdown-footer">
+                                    <button class="btn btn-sm btn-primary" onclick="confirmClarifySelection()">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label>澄清人ERP</label>
+                        <input type="text" id="searchClarifyErp" class="input-field" placeholder="请输入澄清人ERP">
+                    </div>
+                    <div class="form-item">
+                        <label>是否生成订单</label>
+                        <select id="searchHasOrder" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </div>
+                    <div class="form-item" id="vendorField">
+                        <label>评估服务商</label>
+                        <select id="searchVendor" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="科橘">科橘</option>
+                            <option value="猎芯">猎芯</option>
+                            <option value="未分配">未分配</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-row">
+                    <div class="form-item">
+                        <label>拓展选项</label>
+                        <select id="searchExtend" class="select-field">
+                            <option value="">请选择</option>
+                            <option value="HSCode">HSCode</option>
+                            <option value="申报要素">申报要素</option>
+                            <option value="申报本地语名">申报本地语名</option>
+                            <option value="申报英文名">申报英文名</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label>创建人</label>
+                        <input type="text" id="searchCreator" placeholder="请输入创建人" class="input-field">
+                    </div>
+                    <div class="form-item search-buttons">
+                        <button class="btn btn-secondary" onclick="resetSearch()">重置</button>
+                        <button class="btn btn-primary" onclick="searchData()">查询</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 列表操作区 -->
+            <div class="table-toolbar">
+                <div class="batch-buttons">
+                    <button class="btn btn-secondary" id="btnExport" onclick="exportData()">导出</button>
+                    <button class="btn btn-primary" id="btnApplyAssess" onclick="openImportModal()">申请评估</button>
+                    <button class="btn btn-secondary" id="btnAssignVendor" onclick="openAssignVendorModal()">分配服务商</button>
+                    <button class="btn btn-primary" id="btnBatchCustomsAssess" onclick="openBatchCustomsAssess()">关务评估</button>
+                    <button class="btn btn-secondary" id="btnBatchCustomsConfirm" onclick="batchCustomsConfirm()">关务确认</button>
+                    <button class="btn btn-primary" id="btnBatchCertAssess" onclick="openBatchCertAssess()">认证评估</button>
+                    <button class="btn btn-secondary" id="btnBatchCertConfirm" onclick="batchCertConfirm()">认证确认</button>
+                </div>
+            </div>
+
+            <!-- 国家TAB -->
+            <div class="country-tabs">
+                <div class="country-tab active" data-country="CN">中国</div>
+                <div class="country-tab" data-country="BR">巴西</div>
+                <div class="country-tab" data-country="TH">泰国</div>
+                <div class="country-tab" data-country="VN">越南</div>
+                <div class="country-tab" data-country="MY">马来</div>
+                <div class="country-tab" data-country="ID">印尼</div>
+                <div class="country-tab" data-country="HU">匈牙利</div>
+                <div class="country-tab" data-country="SA">沙特</div>
+                <div class="country-tab" data-country="AE">阿联酋</div>
+            </div>
+
+            <!-- 数据表格 -->
+            <div class="table-wrapper">
+                <div class="table-fixed-left">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="checkAll" onchange="toggleCheckAll()"></th>
+                                <th>国内SKU</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBodyLeft">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-scroll">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>海关编码</th>
+                                <th>国际SKU</th>
+                                <th>商品标题</th>
+                                <th>商品图片</th>
+                                <th>数据来源</th>
+                                <th>采销ERP</th>
+                                <th>评估截止时间</th>
+                                <th>关务评估状态</th>
+                                <th class="cert-col">强制性认证状态</th>
+                                <th>海关编码对应税率</th>
+                                <th>是否管制</th>
+                                <th>管制证书</th>
+                                <th>管制备注</th>
+                                <th class="cert-col">是否认证</th>
+                                <th class="cert-col">认证证书</th>
+                                <th class="cert-col">认证备注</th>
+                                <th class="cert-col">不一致提示</th>
+                                <th>评估备注</th>
+                                <th>评估服务商</th>
+                                <th>是否生成订单</th>
+                                <th>毛重(g)</th>
+                                <th>长/宽/高(mm)</th>
+                                <th>重量来源</th>
+                                <th>品牌授权限制</th>
+                                <th>品牌名</th>
+                                <th>商品类目</th>
+                                <th>商品状态</th>
+                                <th>申报英文品名</th>
+                                <th>申报本地品名</th>
+                                <th>创建人</th>
+                                <th>创建时间</th>
+                                <th>更新人</th>
+                                <th>更新时间</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBodyMain">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-fixed-right">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBodyRight">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 申请评估弹窗（Excel导入） -->
+    <div id="importModal" class="modal">
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h2>申请评估 - Excel导入</h2>
+                <span class="close" onclick="closeImportModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="import-area">
+                    <div class="upload-zone">
+                        <div class="upload-icon">📁</div>
+                        <p>点击或拖拽Excel文件到此处上传</p>
+                        <p class="upload-hint">支持 .xlsx, .xls 格式，单次最多1000条</p>
+                        <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none">
+                        <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">选择文件</button>
+                    </div>
+                    <div class="template-download">
+                        <a href="#" class="link">下载导入模板</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeImportModal()">取消</button>
+                <button class="btn btn-primary" onclick="submitImport()">确认导入</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分配服务商弹窗 -->
+    <div id="assignVendorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>分配服务商</h2>
+                <span class="close" onclick="closeAssignVendorModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="required">评估服务商</label>
+                    <select id="assignVendorSelect" class="select-field">
+                        <option value="">请选择</option>
+                        <option value="科橘">科橘</option>
+                        <option value="猎芯">猎芯</option>
+                    </select>
+                </div>
+                <div class="selected-items">
+                    <p>已选择 <span id="selectedCount">0</span> 个商品</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAssignVendorModal()">取消</button>
+                <button class="btn btn-primary" onclick="submitAssignVendor()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量评估弹窗 -->
+    <div id="batchAssessModal" class="modal">
+        <div class="modal-content modal-xl">
+            <div class="modal-header">
+                <h2 id="batchAssessTitle">批量关务评估</h2>
+                <span class="close" onclick="closeBatchAssessModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="batch-product-list">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>国内SKU</th>
+                                <th>国际SKU</th>
+                                <th>商品名称</th>
+                                <th>海关编码</th>
+                            </tr>
+                        </thead>
+                        <tbody id="batchProductList">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="batch-assess-form" id="batchAssessForm">
+                    <!-- 动态填充评估表单 -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeBatchAssessModal()">取消</button>
+                <button class="btn btn-primary" onclick="submitBatchAssess()">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assessment.js"></script>
+</body>
+</html>

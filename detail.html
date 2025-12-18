@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商品详情 - 关务管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assessment.css">
+    <link rel="stylesheet" href="assess-form.css">
+    <link rel="stylesheet" href="clarify-sidebar.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧菜单栏 -->
+        <aside class="sidebar">
+            <div class="logo">关务管理系统</div>
+            <nav class="menu">
+                <div class="menu-item">
+                    <div class="menu-title" onclick="toggleSubmenu(this)">
+                        <span>关务管理</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <ul class="submenu active">
+                        <li><a href="index.html">关务税则库管理</a></li>
+                        <li><a href="index.html">进出口管制认证库</a></li>
+                        <li><a href="assessment.html" class="active">跨境商品评估</a></li>
+                        <li><a href="index.html">许可证管理</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content with-sidebar">
+            <div class="page-header">
+                <div class="header-left">
+                    <button class="btn btn-text" onclick="goBack()">◀ 返回</button>
+                    <h1>商品评估详情</h1>
+                </div>
+            </div>
+
+            <!-- 商品基础信息 -->
+            <div class="info-panel">
+                <div class="panel-title">商品基础信息</div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">国内SKU</span>
+                        <span class="value link">SKU003</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">国际SKU</span>
+                        <span class="value link">INTL-SKU-003</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">商品中文名称</span>
+                        <span class="value">电源适配器</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">商品本地语名称</span>
+                        <span class="value">Power Adapter</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">适用国家</span>
+                        <span class="value">匈牙利</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">数据来源</span>
+                        <span class="value">灵犀</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">采销ERP</span>
+                        <span class="value">sales03</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">评估截止时间</span>
+                        <span class="value">2025-12-20</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">评估服务商</span>
+                        <span class="value">猎芯</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">是否生成订单</span>
+                        <span class="value">是</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">毛重(g)</span>
+                        <span class="value">150</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">长/宽/高(mm)</span>
+                        <span class="value">80/50/30</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">品牌名</span>
+                        <span class="value">Apple</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">商品类目</span>
+                        <span class="value">电源配件</span>
+                    </div>
+                </div>
+                <div class="placeholder-text">【更多商品信息省略...】</div>
+            </div>
+
+            <!-- 关务评估信息 -->
+            <div class="info-panel">
+                <div class="panel-title">
+                    关务评估信息
+                    <span class="status-tag status-done">已评估</span>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">海关编码</span>
+                        <span class="value">8504400000</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">海关编码对应税率</span>
+                        <span class="value">8%</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">是否管制</span>
+                        <span class="value">是</span>
+                    </div>
+                    <div class="detail-item full-width">
+                        <span class="label">管制证书</span>
+                        <div class="certs-display">
+                            <div class="cert-display-item">
+                                <span class="cert-name">CE认证</span>
+                                <span class="cert-tag library">证书库判断</span>
+                                <span class="cert-tag can-handle">可办理</span>
+                                <span class="cert-info-text">预计15天 / 500元</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-item full-width">
+                        <span class="label">管制备注</span>
+                        <span class="value">已完成评估</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 认证评估信息 -->
+            <div class="info-panel">
+                <div class="panel-title">
+                    认证评估信息
+                    <span class="status-tag status-confirming">待确认</span>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="label">是否认证</span>
+                        <span class="value">是</span>
+                    </div>
+                    <div class="detail-item full-width">
+                        <span class="label">认证证书</span>
+                        <div class="certs-display">
+                            <div class="cert-display-item">
+                                <span class="cert-name">CE认证</span>
+                                <span class="cert-tag library">证书库判断</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-item full-width">
+                        <span class="label">认证备注</span>
+                        <span class="value">需认证</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 不一致提示 -->
+            <div class="info-panel" id="inconsistentPanel" style="display:none;">
+                <div class="panel-title" style="color:#ff4d4f;">
+                    ⚠ 评估结论不一致提示
+                </div>
+                <div class="inconsistent-list">
+                    <div class="inconsistent-item">
+                        <span class="cert-name">ESMA认证</span>
+                        <span class="inconsistent-desc">关务NO - 认证YES</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 评估备注 -->
+            <div class="info-panel">
+                <div class="panel-title">评估备注</div>
+                <div class="detail-grid">
+                    <div class="detail-item full-width">
+                        <span class="value">正常商品</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 操作记录 -->
+            <div class="info-panel">
+                <div class="panel-title">操作记录（非本期）</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">认证评估提交</div>
+                            <div class="timeline-info">wangwu03 | 2025-12-10 11:20:00</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">关务评估确认</div>
+                            <div class="timeline-info">wangwu03 | 2025-12-08 16:30:00</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">关务评估提交</div>
+                            <div class="timeline-info">lisi02 | 2025-12-05 14:00:00</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">分配服务商：猎芯</div>
+                            <div class="timeline-info">zhangsan01 | 2025-12-02 10:00:00</div>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-title">申请评估（Excel导入）</div>
+                            <div class="timeline-info">wangwu03 | 2025-11-28 16:45:00</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 底部操作栏 -->
+            <div class="submit-bar">
+                <button class="btn btn-secondary" onclick="goBack()">返回列表</button>
+                <button class="btn btn-primary" onclick="openCustomsModify()">关务修改</button>
+                <button class="btn btn-primary" onclick="certConfirm()">认证确认</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 澄清侧边栏 - 固定模式 -->
+    <div class="clarify-sidebar" id="clarifySidebar">
+        <div class="clarify-sidebar-header">
+            <div class="clarify-sidebar-header-left">
+                <span class="clarify-sidebar-title">澄清记录</span>
+                <button class="btn btn-primary" onclick="openCreateClarify()">发起澄清</button>
+            </div>
+            <button class="clarify-sidebar-close" onclick="toggleClarifySidebar()">折叠</button>
+            <button class="clarify-sidebar-toggle" onclick="toggleClarifySidebar()">澄清记录 ▶</button>
+        </div>
+        <div class="clarify-tabs" id="clarifyTabs">
+            <div class="clarify-tab active" data-tab="all">全部<span class="badge" id="badgeAll">0</span></div>
+            <div class="clarify-tab" data-tab="pending">待采销回复<span class="badge" id="badgePending">0</span></div>
+            <div class="clarify-tab" data-tab="replied">澄清已回复<span class="badge" id="badgeReplied">0</span></div>
+            <div class="clarify-tab" data-tab="resolved">澄清完毕<span class="badge" id="badgeResolved">0</span></div>
+        </div>
+        <div class="clarify-content">
+            <div class="clarify-list" id="clarifyList">
+                <!-- 澄清消息列表 -->
+            </div>
+        </div>
+        <div class="clarify-notice">
+            <span class="notice-icon">🤖</span>
+            <span>京ME机器人将自动推送澄清通知</span>
+        </div>
+    </div>
+
+    <!-- 发起澄清弹窗 -->
+    <div class="clarify-create-modal" id="clarifyCreateModal">
+        <div class="clarify-create-dialog">
+            <div class="clarify-create-header">
+                <span>发起澄清</span>
+                <button class="clarify-create-close" onclick="closeCreateClarify()">&times;</button>
+            </div>
+            <div class="clarify-create-form">
+                <div class="form-group">
+                    <label>澄清国家</label>
+                    <div class="clarify-country-display" id="clarifyCountryDisplay">匈牙利</div>
+                </div>
+                <div class="form-group">
+                    <label>澄清内容 <span class="required">*</span></label>
+                    <textarea id="clarifyContent" placeholder="请一次性分条目提交所有待澄清事项，采销响应前不允许重复多次提交" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>附件（最多5个，单个不超过10MB，支持图片和PDF）</label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="clarifyFiles" multiple accept="image/*,.pdf" onchange="handleFileSelect(event)" style="display:none;">
+                        <div class="file-upload-trigger" onclick="document.getElementById('clarifyFiles').click()">
+                            <span class="upload-icon">📎</span>
+                            <span>点击或拖拽上传附件</span>
+                        </div>
+                        <div class="file-list" id="fileList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clarify-create-footer">
+                <button class="btn btn-secondary" onclick="closeCreateClarify()">取消</button>
+                <button class="btn btn-primary" onclick="submitClarify()">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* 详情页专用样式 */
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detail-item.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .detail-item .label {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .detail-item .value {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .detail-item .value.link {
+            color: #4a90e2;
+            cursor: pointer;
+        }
+
+        .panel-title .status-tag {
+            margin-left: 12px;
+        }
+
+        /* 证书展示 */
+        .certs-display {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .cert-display-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background-color: #fafafa;
+            border-radius: 4px;
+        }
+
+        .cert-display-item .cert-name {
+            font-weight: 500;
+        }
+
+        .cert-display-item .cert-tag {
+            padding: 2px 8px;
+            border-radius: 2px;
+            font-size: 12px;
+        }
+
+        .cert-display-item .cert-tag.library {
+            background-color: #f6ffed;
+            color: #52c41a;
+        }
+
+        .cert-display-item .cert-tag.can-handle {
+            background-color: #e6f7ff;
+            color: #1890ff;
+        }
+
+        .cert-display-item .cert-info-text {
+            font-size: 12px;
+            color: #999;
+        }
+
+        /* 不一致列表 */
+        .inconsistent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .inconsistent-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background-color: #fff2e8;
+            border-radius: 4px;
+        }
+
+        .inconsistent-item .cert-name {
+            font-weight: 500;
+            color: #fa541c;
+        }
+
+        .inconsistent-item .inconsistent-desc {
+            font-size: 12px;
+            color: #fa541c;
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 24px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background-color: #e8e8e8;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -20px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: #4a90e2;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 0 2px #4a90e2;
+        }
+
+        .timeline-content {
+            padding-left: 8px;
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .timeline-info {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+
+    <script>
+        function toggleSubmenu(element) {
+            const submenu = element.nextElementSibling;
+            submenu.classList.toggle('active');
+            element.classList.toggle('collapsed');
+        }
+
+        function goBack() {
+            window.location.href = 'assessment.html';
+        }
+
+        function openCustomsModify() {
+            window.location.href = 'assess-customs.html?id=3&mode=modify';
+        }
+
+        function certConfirm() {
+            if (confirm('确认认证确认吗？')) {
+                alert('确认成功！');
+                goBack();
+            }
+        }
+    </script>
+    <script src="clarify-sidebar.js"></script>
+</body>
+</html>
