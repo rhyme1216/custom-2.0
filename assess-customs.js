@@ -29,8 +29,8 @@ const judgeTypeMap = {
     3: '证书库判断'
 };
 
-// 当前商品信息
-let currentProduct = null;
+// 当前商品信息 (改名避免与clarify-sidebar.js冲突)
+let currentAssessProduct = null;
 let currentCountry = 'CN';
 let isModifyMode = false;
 let isBatchMode = false;
@@ -44,6 +44,18 @@ document.addEventListener('DOMContentLoaded', function() {
     parseUrlParams();
     loadProductInfo();
     loadCertsList();
+});
+
+// 等待澄清侧边栏加载完成后初始化
+window.addEventListener('load', function() {
+    if (typeof initClarifySidebar === 'function') {
+        initClarifySidebar({
+            domSku: document.getElementById('infoSku')?.textContent || 'SKU001',
+            country: currentCountry,
+            countryName: countryMap[currentCountry] || currentCountry,
+            salesErp: 'sales01'
+        });
+    }
 });
 
 // 解析URL参数
@@ -63,7 +75,7 @@ function parseUrlParams() {
         document.getElementById('pageTitle').textContent = isModifyMode ? '批量关务修改' : '批量关务评估';
     } else if (id) {
         // 单个模式
-        currentProduct = { id: parseInt(id) };
+        currentAssessProduct = { id: parseInt(id) };
         document.getElementById('pageTitle').textContent = isModifyMode ? '关务修改' : '关务评估';
     }
 }

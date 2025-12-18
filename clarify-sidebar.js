@@ -213,7 +213,7 @@ function updateClarifyTabCounts() {
         all: clarifyData.length,
         pending: clarifyData.filter(c => c.status === 1).length,
         replied: clarifyData.filter(c => c.status === 2).length,
-        done: clarifyData.filter(c => c.status === 3).length
+        resolved: clarifyData.filter(c => c.status === 3).length
     };
     
     document.querySelectorAll('.clarify-tab').forEach(tab => {
