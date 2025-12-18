@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>认证评估 - 关务管理系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assessment.css">
+    <link rel="stylesheet" href="assess-form.css">
+    <link rel="stylesheet" href="clarify-sidebar.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 左侧菜单栏 -->
+        <aside class="sidebar">
+            <div class="logo">关务管理系统</div>
+            <nav class="menu">
+                <div class="menu-item">
+                    <div class="menu-title" onclick="toggleSubmenu(this)">
+                        <span>关务管理</span>
+                        <span class="arrow">▼</span>
+                    </div>
+                    <ul class="submenu active">
+                        <li><a href="index.html">关务税则库管理</a></li>
+                        <li><a href="index.html">进出口管制认证库</a></li>
+                        <li><a href="assessment.html" class="active">跨境商品评估</a></li>
+                        <li><a href="index.html">许可证管理</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content with-sidebar">
+            <div class="page-header">
+                <div class="header-left">
+                    <button class="btn btn-text" onclick="goBack()">← 返回</button>
+                    <h1 id="pageTitle">认证评估</h1>
+                </div>
+            </div>
+
+            <!-- 商品基础信息（占位） -->
+            <div class="info-panel">
+                <div class="panel-title">商品基础信息</div>
+                <div class="placeholder-content">
+                    <div class="placeholder-item">
+                        <span class="label">国内SKU：</span>
+                        <span class="value" id="infoSku">SKU003</span>
+                    </div>
+                    <div class="placeholder-item">
+                        <span class="label">国际SKU：</span>
+                        <span class="value" id="infoIntlSku">INTL-SKU-003</span>
+                    </div>
+                    <div class="placeholder-item">
+                        <span class="label">商品名称：</span>
+                        <span class="value" id="infoName">电源适配器</span>
+                    </div>
+                    <div class="placeholder-item">
+                        <span class="label">适用国家：</span>
+                        <span class="value" id="infoCountry">匈牙利</span>
+                    </div>
+                    <div class="placeholder-text">【其他商品信息省略...】</div>
+                </div>
+            </div>
+
+            <!-- 批量商品列表（批量模式显示） -->
+            <div class="batch-list-panel" id="batchListPanel" style="display:none;">
+                <div class="panel-title">已选商品列表</div>
+                <div class="batch-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>国内SKU</th>
+                                <th>国际SKU</th>
+                                <th>商品名称</th>
+                                <th>海关编码</th>
+                                <th>适用国家</th>
+                            </tr>
+                        </thead>
+                        <tbody id="batchProductList">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 编辑区域 -->
+            <div class="edit-panel">
+                <div class="panel-title">认证评估信息</div>
+                
+                <form id="certAssessForm">
+                    <!-- 是否认证 -->
+                    <div class="form-section">
+                        <div class="section-title">认证信息</div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="required">是否认证</label>
+                                <div class="radio-group">
+                                    <label class="radio-item">
+                                        <input type="radio" name="isCertified" value="1" onchange="toggleCertCerts(true)"> 是
+                                    </label>
+                                    <label class="radio-item">
+                                        <input type="radio" name="isCertified" value="0" onchange="toggleCertCerts(false)"> 否
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 认证证书选择区域 -->
+                        <div id="certCertsArea" class="certs-area" style="display:none;">
+                            <div class="form-group">
+                                <label class="required">认证证书（至少选择一个）</label>
+                                <div class="certs-list" id="certCertsList">
+                                    <!-- 动态加载证书列表 -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 认证备注 -->
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>认证备注</label>
+                                <textarea id="certRemark" class="textarea-field" placeholder="请输入备注信息"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 评估备注 -->
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label>评估备注</label>
+                                <textarea id="assessRemark" class="textarea-field" placeholder="请输入评估备注"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 提交按钮 -->
+            <div class="submit-bar">
+                <button class="btn btn-secondary" onclick="goBack()">取消</button>
+                <button class="btn btn-primary" onclick="submitAssess()">提交</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- 澄清侧边栏 - 固定模式 -->
+    <div class="clarify-sidebar" id="clarifySidebar">
+        <div class="clarify-sidebar-header">
+            <div class="clarify-sidebar-header-left">
+                <span class="clarify-sidebar-title">澄清记录</span>
+                <button class="btn btn-sm btn-primary" onclick="openCreateClarify()">发起澄清</button>
+            </div>
+            <button class="clarify-sidebar-close" onclick="toggleClarifySidebar()">折叠</button>
+            <button class="clarify-sidebar-toggle" onclick="toggleClarifySidebar()">澄清记录 ▶</button>
+        </div>
+        <div class="clarify-tabs" id="clarifyTabs">
+            <div class="clarify-tab active" data-tab="all">全部<span class="badge" id="badgeAll">0</span></div>
+            <div class="clarify-tab" data-tab="pending">待采销回复<span class="badge" id="badgePending">0</span></div>
+            <div class="clarify-tab" data-tab="replied">澄清已回复<span class="badge" id="badgeReplied">0</span></div>
+            <div class="clarify-tab" data-tab="resolved">澄清完毕<span class="badge" id="badgeResolved">0</span></div>
+        </div>
+        <div class="clarify-content">
+            <div class="clarify-list" id="clarifyList">
+                <!-- 澄清消息列表 -->
+            </div>
+        </div>
+        <div class="clarify-notice">
+            <span class="notice-icon">🤖</span>
+            <span>京ME机器人将自动推送澄清通知</span>
+        </div>
+    </div>
+
+    <!-- 发起澄清弹窗 -->
+    <div class="clarify-create-modal" id="clarifyCreateModal">
+        <div class="clarify-create-dialog">
+            <div class="clarify-create-header">
+                <span>发起澄清</span>
+                <button class="clarify-create-close" onclick="closeCreateClarify()">&times;</button>
+            </div>
+            <div class="clarify-create-form">
+                <div class="form-group">
+                    <label>澄清国家</label>
+                    <div class="clarify-country-display" id="clarifyCountryDisplay">匈牙利</div>
+                </div>
+                <div class="form-group">
+                    <label>澄清内容 <span class="required">*</span></label>
+                    <textarea id="clarifyContent" placeholder="请输入澄清内容..." rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>附件（最多5个，单个不超过10MB，支持图片和PDF）</label>
+                    <div class="file-upload-area" id="fileUploadArea">
+                        <input type="file" id="clarifyFiles" multiple accept="image/*,.pdf" onchange="handleFileSelect(event)" style="display:none;">
+                        <div class="file-upload-trigger" onclick="document.getElementById('clarifyFiles').click()">
+                            <span class="upload-icon">📎</span>
+                            <span>点击或拖拽上传附件</span>
+                        </div>
+                        <div class="file-list" id="fileList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="clarify-create-footer">
+                <button class="btn btn-secondary" onclick="closeCreateClarify()">取消</button>
+                <button class="btn btn-primary" onclick="submitClarify()">提交</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assess-cert.js"></script>
+    <script src="clarify-sidebar.js"></script>
+</body>
+</html>
