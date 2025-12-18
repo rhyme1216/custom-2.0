@@ -1506,6 +1506,9 @@ function renderTable() {
             rowHtml += `<td class="cert-col"><span class="status-tag ${getStatusClass(item.certStatus)}">${certStatusMap[item.certStatus]}</span></td>`;
         }
         
+        // 澄清进度列
+        rowHtml += `<td><span class="status-tag ${getClarifyStatusClass(item.clarifyStatus)}">${clarifyStatusMap[item.clarifyStatus]}</span></td>`;
+        
         // 税率和管制相关列
         rowHtml += `
             <td>${item.taxRate}</td>
@@ -1560,6 +1563,17 @@ function getStatusClass(status) {
         case 1: return 'status-pending';
         case 2: return 'status-confirming';
         case 3: return 'status-done';
+        default: return '';
+    }
+}
+
+// 获取澄清状态样式类
+function getClarifyStatusClass(status) {
+    switch(status) {
+        case 0: return 'clarify-none';
+        case 10: return 'clarify-pending';
+        case 20: return 'clarify-replied';
+        case 30: return 'clarify-done';
         default: return '';
     }
 }
@@ -1855,8 +1869,90 @@ function toggleItemCheck(id) {
 
 // 更新批量按钮状态
 function updateBatchButtonsState() {
-    document.getElementById('selectedCount').textContent = selectedItems.length;
-    // 这里可以根据选中项的状态来显示/隐藏批量按钮
+    const countEl = document.getElementById('selectedCount');
+    if (countEl) {
+        countEl.textContent = selectedItems.length;
+    }
+    
+    // 获取选中商品的数据
+    const selectedData = mockData.filter(item => selectedItems.includes(item.id));
+    
+    // 按钮引用
+    const btnCustomsAssess = document.getElementById('btnBatchCustomsAssess');
+    const btnCustomsConfirm = document.getElementById('btnBatchCustomsConfirm');
+    const btnCustomsModify = document.getElementById('btnBatchCustomsModify');
+    const btnCertAssess = document.getElementById('btnBatchCertAssess');
+    const btnCertConfirm = document.getElementById('btnBatchCertConfirm');
+    const btnCertModify = document.getElementById('btnBatchCertModify');
+    
+    // 默认全部变白（未满足条件）
+    const allBtns = [btnCustomsAssess, btnCustomsConfirm, btnCustomsModify, btnCertAssess, btnCertConfirm, btnCertModify];
+    allBtns.forEach(btn => {
+        if (btn) {
+            btn.classList.remove('btn-primary');
+            btn.classList.add('btn-secondary');
+        }
+    });
+    
+    if (selectedData.length === 0) {
+        return;
+    }
+    
+    // 检查条件：所有选中项都满足某个条件时，对应按钮变蓝
+    
+    // 关务评估：关务评估状态=待评估(1)，澄清状态<>待采销回复(10)
+    const canCustomsAssess = selectedData.every(item => 
+        item.customsStatus === 1 && item.clarifyStatus !== 10
+    );
+    if (canCustomsAssess && btnCustomsAssess) {
+        btnCustomsAssess.classList.remove('btn-secondary');
+        btnCustomsAssess.classList.add('btn-primary');
+    }
+    
+    // 关务确认：关务评估状态=待确认(2)，澄清状态<>待采销回复(10)
+    const canCustomsConfirm = selectedData.every(item => 
+        item.customsStatus === 2 && item.clarifyStatus !== 10
+    );
+    if (canCustomsConfirm && btnCustomsConfirm) {
+        btnCustomsConfirm.classList.remove('btn-secondary');
+        btnCustomsConfirm.classList.add('btn-primary');
+    }
+    
+    // 关务修改：关务评估状态=已评估(3)
+    const canCustomsModify = selectedData.every(item => 
+        item.customsStatus === 3
+    );
+    if (canCustomsModify && btnCustomsModify) {
+        btnCustomsModify.classList.remove('btn-secondary');
+        btnCustomsModify.classList.add('btn-primary');
+    }
+    
+    // 认证评估：认证评估状态=待评估(1)，澄清状态<>待采销回复(10)
+    const canCertAssess = selectedData.every(item => 
+        item.certStatus === 1 && item.clarifyStatus !== 10
+    );
+    if (canCertAssess && btnCertAssess) {
+        btnCertAssess.classList.remove('btn-secondary');
+        btnCertAssess.classList.add('btn-primary');
+    }
+    
+    // 认证确认：认证评估状态=待确认(2)，澄清状态<>待采销回复(10)
+    const canCertConfirm = selectedData.every(item => 
+        item.certStatus === 2 && item.clarifyStatus !== 10
+    );
+    if (canCertConfirm && btnCertConfirm) {
+        btnCertConfirm.classList.remove('btn-secondary');
+        btnCertConfirm.classList.add('btn-primary');
+    }
+    
+    // 认证修改：认证评估状态=已评估(3)
+    const canCertModify = selectedData.every(item => 
+        item.certStatus === 3
+    );
+    if (canCertModify && btnCertModify) {
+        btnCertModify.classList.remove('btn-secondary');
+        btnCertModify.classList.add('btn-primary');
+    }
 }
 
 // 重置搜索
@@ -1987,6 +2083,24 @@ function batchCertConfirm() {
         selectedItems = [];
         renderTable();
     }
+}
+
+// 批量关务修改
+function batchCustomsModify() {
+    if (selectedItems.length === 0) {
+        alert('请先选择商品');
+        return;
+    }
+    window.location.href = `assess-customs.html?ids=${selectedItems.join(',')}&mode=modify`;
+}
+
+// 批量认证修改
+function batchCertModify() {
+    if (selectedItems.length === 0) {
+        alert('请先选择商品');
+        return;
+    }
+    window.location.href = `assess-cert.html?ids=${selectedItems.join(',')}&mode=modify`;
 }
 
 // 单个操作

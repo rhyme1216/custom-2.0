@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>跨境商品评估 - 关务管理系统</title>
+    <title>跨境商品评估 - 新功能原型图</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assessment.css">
 </head>
@@ -158,7 +158,7 @@
                 </div>
                 <div class="search-row">
                     <div class="form-item" id="certStatusField">
-                        <label>强制性认证状态</label>
+                        <label>认证评估状态</label>
                         <select id="searchCertStatus" class="select-field">
                             <option value="">请选择</option>
                             <option value="1">待评估</option>
@@ -204,6 +204,8 @@
                             <option value="0">否</option>
                         </select>
                     </div>
+                </div>
+                <div class="search-row">
                     <div class="form-item" id="vendorField">
                         <label>评估服务商</label>
                         <select id="searchVendor" class="select-field">
@@ -213,8 +215,6 @@
                             <option value="未分配">未分配</option>
                         </select>
                     </div>
-                </div>
-                <div class="search-row">
                     <div class="form-item">
                         <label>拓展选项</label>
                         <select id="searchExtend" class="select-field">
@@ -239,13 +239,15 @@
             <!-- 列表操作区 -->
             <div class="table-toolbar">
                 <div class="batch-buttons">
-                    <button class="btn btn-secondary" id="btnExport" onclick="exportData()">导出</button>
+                    <button class="btn btn-primary" id="btnExport" onclick="exportData()">导出</button>
                     <button class="btn btn-primary" id="btnApplyAssess" onclick="openImportModal()">申请评估</button>
                     <button class="btn btn-secondary" id="btnAssignVendor" onclick="openAssignVendorModal()">分配服务商</button>
-                    <button class="btn btn-primary" id="btnBatchCustomsAssess" onclick="openBatchCustomsAssess()">关务评估</button>
+                    <button class="btn btn-secondary" id="btnBatchCustomsAssess" onclick="openBatchCustomsAssess()">关务评估</button>
                     <button class="btn btn-secondary" id="btnBatchCustomsConfirm" onclick="batchCustomsConfirm()">关务确认</button>
-                    <button class="btn btn-primary" id="btnBatchCertAssess" onclick="openBatchCertAssess()">认证评估</button>
+                    <button class="btn btn-secondary" id="btnBatchCustomsModify" onclick="batchCustomsModify()">关务修改</button>
+                    <button class="btn btn-secondary" id="btnBatchCertAssess" onclick="openBatchCertAssess()">认证评估</button>
                     <button class="btn btn-secondary" id="btnBatchCertConfirm" onclick="batchCertConfirm()">认证确认</button>
+                    <button class="btn btn-secondary" id="btnBatchCertModify" onclick="batchCertModify()">认证修改</button>
                 </div>
             </div>
 
@@ -288,7 +290,8 @@
                                 <th>采销ERP</th>
                                 <th>评估截止时间</th>
                                 <th>关务评估状态</th>
-                                <th class="cert-col">强制性认证状态</th>
+                                <th class="cert-col">认证评估状态</th>
+                                <th>澄清进度</th>
                                 <th>海关编码对应税率</th>
                                 <th>是否管制</th>
                                 <th>管制证书</th>

@@ -533,6 +533,27 @@ select[multiple] option {
     color: #52c41a;
 }
 
+/* 澄清状态标签 */
+.status-tag.clarify-none {
+    background-color: #f5f5f5;
+    color: #999;
+}
+
+.status-tag.clarify-pending {
+    background-color: #fff7e6;
+    color: #fa8c16;
+}
+
+.status-tag.clarify-replied {
+    background-color: #e6f7ff;
+    color: #1890ff;
+}
+
+.status-tag.clarify-done {
+    background-color: #f6ffed;
+    color: #52c41a;
+}
+
 /* 警告标签 */
 .warning-tag {
     display: inline-block;
