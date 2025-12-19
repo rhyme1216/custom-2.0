@@ -229,6 +229,23 @@
                         <label>创建人</label>
                         <input type="text" id="searchCreator" placeholder="请输入创建人" class="input-field">
                     </div>
+                    <div class="form-item">
+                        <label>排序字段</label>
+                        <select id="searchSortField" class="select-field">
+                            <option value="createTime-asc" selected>创建时间（升序）</option>
+                            <option value="createTime-desc">创建时间（降序）</option>
+                            <option value="deadline-asc">评估截止时间（升序）</option>
+                            <option value="deadline-desc">评估截止时间（降序）</option>
+                            <option value="updateTime-asc">更新时间（升序）</option>
+                            <option value="updateTime-desc">更新时间（降序）</option>
+                            <option value="hsCode-asc">HSCode（升序）</option>
+                            <option value="hsCode-desc">HSCode（降序）</option>
+                            <option value="title-asc">商品中文（升序）</option>
+                            <option value="title-desc">商品中文（降序）</option>
+                            <option value="localName-asc">商品本地语（升序）</option>
+                            <option value="localName-desc">商品本地语（降序）</option>
+                        </select>
+                    </div>
                     <div class="form-item search-buttons">
                         <button class="btn btn-secondary" onclick="resetSearch()">重置</button>
                         <button class="btn btn-primary" onclick="searchData()">查询</button>
@@ -272,6 +289,7 @@
                             <tr>
                                 <th><input type="checkbox" id="checkAll" onchange="toggleCheckAll()"></th>
                                 <th>国内SKU</th>
+                                <th>任务号</th>
                             </tr>
                         </thead>
                         <tbody id="tableBodyLeft">

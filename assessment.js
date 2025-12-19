@@ -42,6 +42,7 @@ const certLibrary = [
 let assessmentData = [
     {
         id: 1,
+        taskNo: 'TASK202512001',
         domSku: 'SKU001',
         intlSku: 'INTL-SKU-001',
         hsCode: '8471300000',
@@ -82,6 +83,7 @@ let assessmentData = [
     },
     {
         id: 2,
+        taskNo: 'TASK202512002',
         domSku: 'SKU002',
         intlSku: 'INTL-SKU-002',
         hsCode: '8517620000',
@@ -122,6 +124,7 @@ let assessmentData = [
     },
     {
         id: 3,
+        taskNo: 'TASK202512003',
         domSku: 'SKU003',
         intlSku: 'INTL-SKU-003',
         hsCode: '8504400000',
@@ -163,6 +166,7 @@ let assessmentData = [
     },
     {
         id: 4,
+        taskNo: 'TASK202512004',
         domSku: 'SKU004',
         intlSku: 'INTL-SKU-004',
         hsCode: '8471700000',
@@ -204,6 +208,7 @@ let assessmentData = [
     },
     {
         id: 5,
+        taskNo: 'TASK202512005',
         domSku: 'SKU005',
         intlSku: 'INTL-SKU-005',
         hsCode: '8523510000',
@@ -246,6 +251,7 @@ let assessmentData = [
     // 新增更多模拟数据
     {
         id: 6,
+        taskNo: 'TASK202512006',
         domSku: 'SKU006',
         intlSku: 'INTL-SKU-006',
         hsCode: '8518300000',
@@ -286,6 +292,7 @@ let assessmentData = [
     },
     {
         id: 7,
+        taskNo: 'TASK202512007',
         domSku: 'SKU007',
         intlSku: 'INTL-SKU-007',
         hsCode: '8471500000',
@@ -326,6 +333,7 @@ let assessmentData = [
     },
     {
         id: 8,
+        taskNo: 'TASK202512008',
         domSku: 'SKU008',
         intlSku: 'INTL-SKU-008',
         hsCode: '8528720000',
@@ -367,6 +375,7 @@ let assessmentData = [
     },
     {
         id: 9,
+        taskNo: 'TASK202512009',
         domSku: 'SKU009',
         intlSku: 'INTL-SKU-009',
         hsCode: '8544421000',
@@ -408,6 +417,7 @@ let assessmentData = [
     },
     {
         id: 10,
+        taskNo: 'TASK202512010',
         domSku: 'SKU010',
         intlSku: 'INTL-SKU-010',
         hsCode: '8517120000',
@@ -448,6 +458,7 @@ let assessmentData = [
     },
     {
         id: 11,
+        taskNo: 'TASK202512011',
         domSku: 'SKU011',
         intlSku: 'INTL-SKU-011',
         hsCode: '8473300000',
@@ -489,6 +500,7 @@ let assessmentData = [
     },
     {
         id: 12,
+        taskNo: 'TASK202512012',
         domSku: 'SKU012',
         intlSku: 'INTL-SKU-012',
         hsCode: '8471600000',
@@ -531,6 +543,7 @@ let assessmentData = [
     // 新增更多测试数据 - 各国家各状态覆盖
     {
         id: 13,
+        taskNo: 'TASK202512013',
         domSku: 'SKU013',
         intlSku: 'INTL-SKU-013',
         hsCode: '8542310000',
@@ -571,6 +584,7 @@ let assessmentData = [
     },
     {
         id: 14,
+        taskNo: 'TASK202512014',
         domSku: 'SKU014',
         intlSku: 'INTL-SKU-014',
         hsCode: '8471900000',
@@ -612,6 +626,7 @@ let assessmentData = [
     },
     {
         id: 15,
+        taskNo: 'TASK202512015',
         domSku: 'SKU015',
         intlSku: 'INTL-SKU-015',
         hsCode: '8525800000',
@@ -653,6 +668,7 @@ let assessmentData = [
     },
     {
         id: 16,
+        taskNo: 'TASK202512016',
         domSku: 'SKU016',
         intlSku: 'INTL-SKU-016',
         hsCode: '8536690000',
@@ -693,6 +709,7 @@ let assessmentData = [
     },
     {
         id: 17,
+        taskNo: 'TASK202512017',
         domSku: 'SKU017',
         intlSku: 'INTL-SKU-017',
         hsCode: '8518100000',
@@ -734,6 +751,7 @@ let assessmentData = [
     },
     {
         id: 18,
+        taskNo: 'TASK202512018',
         domSku: 'SKU018',
         intlSku: 'INTL-SKU-018',
         hsCode: '8471800000',
@@ -774,6 +792,7 @@ let assessmentData = [
     },
     {
         id: 19,
+        taskNo: 'TASK202512019',
         domSku: 'SKU019',
         intlSku: 'INTL-SKU-019',
         hsCode: '8443320000',
@@ -815,6 +834,7 @@ let assessmentData = [
     },
     {
         id: 20,
+        taskNo: 'TASK202512020',
         domSku: 'SKU020',
         intlSku: 'INTL-SKU-020',
         hsCode: '8506500000',
@@ -855,6 +875,7 @@ let assessmentData = [
     },
     {
         id: 21,
+        taskNo: 'TASK202512021',
         domSku: 'SKU021',
         intlSku: 'INTL-SKU-021',
         hsCode: '8529909000',
@@ -896,6 +917,7 @@ let assessmentData = [
     },
     {
         id: 22,
+        taskNo: 'TASK202512022',
         domSku: 'SKU022',
         intlSku: 'INTL-SKU-022',
         hsCode: '8519810000',
@@ -937,6 +959,7 @@ let assessmentData = [
     },
     {
         id: 23,
+        taskNo: 'TASK202512023',
         domSku: 'SKU023',
         intlSku: 'INTL-SKU-023',
         hsCode: '8471700000',
@@ -977,6 +1000,7 @@ let assessmentData = [
     },
     {
         id: 24,
+        taskNo: 'TASK202512024',
         domSku: 'SKU024',
         intlSku: 'INTL-SKU-024',
         hsCode: '8507600000',
@@ -1018,6 +1042,7 @@ let assessmentData = [
     },
     {
         id: 25,
+        taskNo: 'TASK202512025',
         domSku: 'SKU025',
         intlSku: 'INTL-SKU-025',
         hsCode: '8538900000',
@@ -1058,6 +1083,7 @@ let assessmentData = [
     },
     {
         id: 26,
+        taskNo: 'TASK202512026',
         domSku: 'SKU026',
         intlSku: 'INTL-SKU-026',
         hsCode: '8504900000',
@@ -1099,6 +1125,7 @@ let assessmentData = [
     },
     {
         id: 27,
+        taskNo: 'TASK202512027',
         domSku: 'SKU027',
         intlSku: 'INTL-SKU-027',
         hsCode: '8528590000',
@@ -1139,6 +1166,7 @@ let assessmentData = [
     },
     {
         id: 28,
+        taskNo: 'TASK202512028',
         domSku: 'SKU028',
         intlSku: 'INTL-SKU-028',
         hsCode: '8471300000',
@@ -1471,7 +1499,7 @@ function renderTable() {
     
     if (filteredData.length === 0) {
         const colSpan = isRestricted ? 28 : 33;
-        tbodyLeft.innerHTML = '<tr><td colspan="2" style="text-align: center; padding: 40px; color: #999;">暂无数据</td></tr>';
+        tbodyLeft.innerHTML = '<tr><td colspan="3" style="text-align: center; padding: 40px; color: #999;">暂无数据</td></tr>';
         tbodyMain.innerHTML = `<tr><td colspan="${colSpan}" style="text-align: center; padding: 40px; color: #999;"></td></tr>`;
         tbodyRight.innerHTML = '<tr><td style="text-align: center; padding: 40px; color: #999;">-</td></tr>';
         return;
@@ -1483,6 +1511,7 @@ function renderTable() {
         trLeft.innerHTML = `
             <td><input type="checkbox" class="item-check" data-id="${item.id}" onchange="toggleItemCheck(${item.id})"></td>
             <td><a href="#" class="sku-link">${item.domSku}</a></td>
+            <td>${item.taskNo || '-'}</td>
         `;
         tbodyLeft.appendChild(trLeft);
         
@@ -1782,6 +1811,10 @@ function filterData() {
         data = data.filter(item => item.createTime <= createTimeEnd + ' 23:59:59');
     }
     
+    if (taskNo) {
+        data = data.filter(item => item.taskNo && item.taskNo.toUpperCase().includes(taskNo.toUpperCase()));
+    }
+    
     if (deadlineStart) {
         data = data.filter(item => item.deadline >= deadlineStart);
     }
@@ -1835,6 +1868,32 @@ function filterData() {
         }
     }
     
+    // 排序逻辑
+    const sortFieldValue = document.getElementById('searchSortField')?.value || 'createTime-asc';
+    let [sortField, sortOrder] = sortFieldValue.split('-');
+    // 字段映射
+    const fieldMap = {
+        createTime: 'createTime',
+        deadline: 'deadline',
+        updateTime: 'updateTime',
+        hsCode: 'hsCode',
+        title: 'cnName',
+        localName: 'localName'
+    };
+    sortField = fieldMap[sortField] || 'createTime';
+    sortOrder = sortOrder || 'asc';
+    data = data.slice().sort((a, b) => {
+        let va = a[sortField] || '';
+        let vb = b[sortField] || '';
+        // 日期字段特殊处理
+        if (["createTime","deadline","updateTime"].includes(sortField)) {
+            va = va.replace(/[- :]/g, '');
+            vb = vb.replace(/[- :]/g, '');
+        }
+        if (va < vb) return sortOrder === 'asc' ? -1 : 1;
+        if (va > vb) return sortOrder === 'asc' ? 1 : -1;
+        return 0;
+    });
     return data;
 }
 
@@ -1965,6 +2024,11 @@ function resetSearch() {
         }
     });
     renderTable();
+    // 排序字段变化时自动查询
+    const sortField = document.getElementById('searchSortField');
+    if (sortField) {
+        sortField.addEventListener('change', searchData);
+    }
 }
 
 // 搜索
