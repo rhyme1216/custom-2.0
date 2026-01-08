@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>跨境商品评估 - 新功能原型图</title>
+    <title>跨境商品评估-采销 - 新功能原型图</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assessment.css">
 </head>
@@ -28,7 +28,7 @@
                                     <span class="arrow">▼</span>
                                 </div>
                                 <ul class="sub-submenu active">
-                                    <li><a href="assess-purchase.html">跨境商品评估-采销</a></li>
+                                    <li><a href="assess-purchase.html" class="active">跨境商品评估-采销</a></li>
                                     <li><a href="assess-customs-list.html">跨境商品评估-关务</a></li>
                                     <li><a href="assess-cert-list.html">跨境商品评估-认证</a></li>
                                 </ul>
@@ -43,10 +43,10 @@
         <!-- 主内容区 -->
         <main class="main-content">
             <div class="page-header">
-                <h1>跨境商品评估</h1>
+                <h1>跨境商品评估-采销</h1>
             </div>
 
-            <!-- 顶部视图TAB - 全部平铺展示 -->
+            <!-- 顶部视图TAB - 只显示澄清相关 -->
             <div class="view-tabs">
                 <div class="tab-group">
                     <!-- 全部 -->
@@ -68,44 +68,6 @@
                             <div class="tab-item" data-tab="replied">
                                 <span>已回复</span>
                                 <span class="badge">8</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-divider"></div>
-                    
-                    <!-- 关务评估 -->
-                    <div class="tab-category">
-                        <span class="tab-category-label">关务评估</span>
-                        <div class="tab-category-items">
-                            <div class="tab-item" data-tab="customs-unassigned">
-                                <span>待分配</span>
-                                <span class="badge">25</span>
-                            </div>
-                            <div class="tab-item" data-tab="customs-vendor">
-                                <span>服务商评估</span>
-                                <span class="badge">18</span>
-                            </div>
-                            <div class="tab-item" data-tab="customs-confirm">
-                                <span>待确认</span>
-                                <span class="badge">15</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-divider" id="certTabDivider"></div>
-                    
-                    <!-- 认证评估（中国/越南时隐藏） -->
-                    <div class="tab-category" id="certTabCategory">
-                        <span class="tab-category-label">认证评估</span>
-                        <div class="tab-category-items">
-                            <div class="tab-item" data-tab="cert-pending">
-                                <span>待评估</span>
-                                <span class="badge">30</span>
-                            </div>
-                            <div class="tab-item" data-tab="cert-confirm">
-                                <span>待确认</span>
-                                <span class="badge">20</span>
                             </div>
                         </div>
                     </div>
@@ -132,8 +94,8 @@
                         <select id="searchSource" class="select-field">
                             <option value="">请选择</option>
                             <option value="Excel">Excel</option>
+                            <option value="采销换绑">采销换绑</option>
                             <option value="商品">商品</option>
-                            <option value="灵犀">灵犀</option>
                         </select>
                     </div>
                 </div>
@@ -157,26 +119,6 @@
                             <span>至</span>
                             <input type="date" id="deadlineEnd" class="input-field">
                         </div>
-                    </div>
-                    <div class="form-item" id="customsStatusField">
-                        <label>关务评估状态</label>
-                        <select id="searchCustomsStatus" class="select-field">
-                            <option value="">请选择</option>
-                            <option value="1">待评估</option>
-                            <option value="2">待确认</option>
-                            <option value="3">已评估</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="search-row">
-                    <div class="form-item" id="certStatusField">
-                        <label>认证评估状态</label>
-                        <select id="searchCertStatus" class="select-field">
-                            <option value="">请选择</option>
-                            <option value="1">待评估</option>
-                            <option value="2">待确认</option>
-                            <option value="3">已评估</option>
-                        </select>
                     </div>
                     <div class="form-item">
                         <label>澄清进度</label>
@@ -204,38 +146,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="search-row">
                     <div class="form-item">
                         <label>澄清人ERP</label>
                         <input type="text" id="searchClarifyErp" class="input-field" placeholder="请输入澄清人ERP">
-                    </div>
-                    <div class="form-item">
-                        <label>是否生成订单</label>
-                        <select id="searchHasOrder" class="select-field">
-                            <option value="">请选择</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="search-row">
-                    <div class="form-item" id="vendorField">
-                        <label>评估服务商</label>
-                        <select id="searchVendor" class="select-field">
-                            <option value="">请选择</option>
-                            <option value="科橘">科橘</option>
-                            <option value="猎芯">猎芯</option>
-                            <option value="未分配">未分配</option>
-                        </select>
-                    </div>
-                    <div class="form-item">
-                        <label>拓展选项</label>
-                        <select id="searchExtend" class="select-field">
-                            <option value="">请选择</option>
-                            <option value="HSCode">HSCode</option>
-                            <option value="申报要素">申报要素</option>
-                            <option value="申报本地语名">申报本地语名</option>
-                            <option value="申报英文名">申报英文名</option>
-                        </select>
                     </div>
                     <div class="form-item">
                         <label>创建人</label>
@@ -250,12 +165,6 @@
                             <option value="deadline-desc">评估截止时间（降序）</option>
                             <option value="updateTime-asc">更新时间（升序）</option>
                             <option value="updateTime-desc">更新时间（降序）</option>
-                            <option value="hsCode-asc">HSCode（升序）</option>
-                            <option value="hsCode-desc">HSCode（降序）</option>
-                            <option value="title-asc">商品中文（升序）</option>
-                            <option value="title-desc">商品中文（降序）</option>
-                            <option value="localName-asc">商品本地语（升序）</option>
-                            <option value="localName-desc">商品本地语（降序）</option>
                         </select>
                     </div>
                     <div class="form-item search-buttons">
@@ -270,13 +179,6 @@
                 <div class="batch-buttons">
                     <button class="btn btn-primary" id="btnExport" onclick="exportData()">导出</button>
                     <button class="btn btn-primary" id="btnApplyAssess" onclick="openImportModal()">申请评估</button>
-                    <button class="btn btn-secondary" id="btnAssignVendor" onclick="openAssignVendorModal()">分配服务商</button>
-                    <button class="btn btn-secondary" id="btnBatchCustomsAssess" onclick="openBatchCustomsAssess()">关务评估</button>
-                    <button class="btn btn-secondary" id="btnBatchCustomsConfirm" onclick="batchCustomsConfirm()">关务确认</button>
-                    <button class="btn btn-secondary" id="btnBatchCustomsModify" onclick="batchCustomsModify()">关务修改</button>
-                    <button class="btn btn-secondary" id="btnBatchCertAssess" onclick="openBatchCertAssess()">认证评估</button>
-                    <button class="btn btn-secondary" id="btnBatchCertConfirm" onclick="batchCertConfirm()">认证确认</button>
-                    <button class="btn btn-secondary" id="btnBatchCertModify" onclick="batchCertModify()">认证修改</button>
                 </div>
             </div>
 
@@ -314,13 +216,14 @@
                             <tr>
                                 <th>海关编码</th>
                                 <th>国际SKU</th>
-                                <th>商品标题</th>
+                                <th>商品中文名称</th>
+                                <th>商品本地语名称</th>
                                 <th>商品图片</th>
                                 <th>数据来源</th>
                                 <th>采销ERP</th>
                                 <th>评估截止时间</th>
-                                <th>关务评估状态</th>
-                                <th class="cert-col">认证评估状态</th>
+                                <th>关务状态</th>
+                                <th class="cert-col">认证状态</th>
                                 <th>澄清进度</th>
                                 <th>海关编码对应税率</th>
                                 <th>是否管制</th>
@@ -395,66 +298,42 @@
         </div>
     </div>
 
-    <!-- 分配服务商弹窗 -->
-    <div id="assignVendorModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>分配服务商</h2>
-                <span class="close" onclick="closeAssignVendorModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="required">评估服务商</label>
-                    <select id="assignVendorSelect" class="select-field">
-                        <option value="">请选择</option>
-                        <option value="科橘">科橘</option>
-                        <option value="猎芯">猎芯</option>
-                    </select>
-                </div>
-                <div class="selected-items">
-                    <p>已选择 <span id="selectedCount">0</span> 个商品</p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeAssignVendorModal()">取消</button>
-                <button class="btn btn-primary" onclick="submitAssignVendor()">确定</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 批量评估弹窗 -->
-    <div id="batchAssessModal" class="modal">
-        <div class="modal-content modal-xl">
-            <div class="modal-header">
-                <h2 id="batchAssessTitle">批量关务评估</h2>
-                <span class="close" onclick="closeBatchAssessModal()">&times;</span>
-            </div>
-            <div class="modal-body">
-                <div class="batch-product-list">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>国内SKU</th>
-                                <th>国际SKU</th>
-                                <th>商品名称</th>
-                                <th>海关编码</th>
-                            </tr>
-                        </thead>
-                        <tbody id="batchProductList">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="batch-assess-form" id="batchAssessForm">
-                    <!-- 动态填充评估表单 -->
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" onclick="closeBatchAssessModal()">取消</button>
-                <button class="btn btn-primary" onclick="submitBatchAssess()">提交</button>
-            </div>
-        </div>
-    </div>
-
     <script src="assessment.js"></script>
-</body>
-</html>
+    <script>
+        // ===== 采销视图专用配置 =====
+        // 重写按钮渲染函数，仅显示【取消评估】【详情】
+        const originalRenderActionButtons = window.renderActionButtons;
+        window.renderActionButtons = function(item) {
+            let buttons = [];
+            
+            // 取消评估按钮（待评估状态可用）
+            if (item.customsStatus === 1 && item.certStatus === 1) {
+                buttons.push({ text: '取消评估', action: `cancelAssess(${item.id})`, className: 'btn-text' });
+            }
+            
+            // 详情按钮
+            buttons.push({ text: '详情', action: `openDetail(${item.id})`, className: 'btn-text' });
+            
+            // 渲染按钮
+            let html = '<div class="action-buttons-grid">';
+            buttons.forEach(btn => {
+                html += `<button class="btn ${btn.className}" onclick="${btn.action}">${btn.text}</button>`;
+            });
+            html += '</div>';
+            return html;
+        };
+        
+        // 页面加载完成后初始化
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                if (typeof renderTable === 'function') {
+                    renderTable();
+                }
+            });
+        } else {
+            // DOM已加载，直接执行
+            if (typeof renderTable === 'function') {
+                renderTable();
+            }
+        }
+    </script>

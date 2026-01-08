@@ -1523,7 +1523,7 @@ function renderTable() {
             <td>${item.hsCode}</td>
             <td><a href="#" class="sku-link">${item.intlSku}</a></td>
             <td>${item.cnName}<br><span style="color:#999">${item.localName}</span></td>
-            <td><img src="${item.image}" class="product-image" alt="商品图片"></td>
+            <td><img src="${item.image || 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Crect fill=\'%23ddd\' width=\'50\' height=\'50\'/%3E%3C/svg%3E'}" class="product-image" alt="商品图片" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'50\' height=\'50\'%3E%3Crect fill=\'%23ddd\' width=\'50\' height=\'50\'/%3E%3C/svg%3E'"></td>
             <td>${item.source}</td>
             <td>${item.salesErp}</td>
             <td>${item.deadline}</td>

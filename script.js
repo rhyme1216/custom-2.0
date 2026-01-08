@@ -182,6 +182,13 @@ function toggleSubmenu(element) {
     element.classList.toggle('collapsed');
 }
 
+// 切换三级菜单
+function toggleSubSubmenu(element) {
+    const subSubmenu = element.nextElementSibling;
+    subSubmenu.classList.toggle('active');
+    element.classList.toggle('collapsed');
+}
+
 // 渲染表格
 function renderTable() {
     const tbody = document.getElementById('tableBody');
